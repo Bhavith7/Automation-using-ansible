@@ -1,0 +1,7 @@
+[haproxy] 
+devhaproxy 
+
+[webservers] 
+devA 
+devB 
+devC
