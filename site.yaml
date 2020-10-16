@@ -43,3 +43,33 @@
      service:
          name: nginx
          state: restarted
+- hosts: haproxy
+  gather_facts: yes
+  vars:
+    haproxy_mode: http
+    haproxy_algorithm: roundrobin
+    haproxy_backend: Web_servers
+  become: yes
+  tasks:
+   #- debug:
+   #   var: vars.hostvars.devhaproxy
+   #- debug:
+   #   var: ansible_default_ipv4
+   #   verbosity: 0
+   - name: Update apt cache in Haproxy
+     apt:
+      update_cache: yes
+      cache_valid_time: 3600
+   - name: Install haproxy
+     become: yes
+     apt:
+      name: haproxy
+      state: present
+   - name: Update HAProxy config file
+     template:
+      src: templates/haproxy.cfg.j2
+      dest: /etc/haproxy/haproxy.cfg
+   - name: Restart HAProxy
+     service:
+       name: haproxy
+       state: restarted
