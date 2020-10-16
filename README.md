@@ -8,7 +8,7 @@ Nginx is a popular open-source web server which can also be used as a reverse pr
 ## HAProxy
 HAProxy stands for High Availability Proxy which is a popular open-source TCP/HTTP load balancer whose main aim is to distribute the workflow across multiple servers and improve the reliability of the environment.The load balancer is deployed on devhaproxy device as specified in the hosts file.The configuration parameters of the HAProxy can be accessed [here](http://www.haproxy.org/download/2.2/doc/configuration.txt). 
 
-##Bastion Host
+## Bastion Host
 Bastion host,also called as a jump server,is a server used to manage access to a private network from an external network.
 
 ---
