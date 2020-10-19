@@ -1,0 +1,43 @@
+#Sample SSH config file template
+Host bastion_host
+    Hostname <Hostname_of_machine>
+    user <username_of_machine>
+    IdentityFile <Path_of_private_key>
+    # Enable SSH agent forwarding
+    ForwardAgent yes
+    #Enables SSH session multiplexing    
+    ControlMaster auto  
+    StrictHostKeyChecking no
+    #Path to control socket
+    ControlPath ~/.ssh/ansible-%r@%h:%p
+    #The connection time remains till specified time after master session logs out  
+    ControlPersist 5m   
+
+Host devA
+    Hostname <Hostname_of_machine>
+    user <username_of_machine>
+    IdentityFile <Path_of_private_key>
+    StrictHostKeyChecking no
+    ProxyCommand ssh -W %h:%p bastion_host
+  
+Host devB
+    Hostname <Hostname_of_machine>
+    user <username_of_machine>
+    IdentityFile <Path_of_private_key>
+    StrictHostKeyChecking no
+    ProxyCommand ssh -W %h:%p bastion_host
+    
+Host devC
+    Hostname <Hostname_of_machine>
+    user <username_of_machine>
+    IdentityFile <Path_of_private_key>
+    StrictHostKeyChecking no
+    ProxyCommand ssh -W %h:%p bastion_host
+
+Host devhaproxy
+    Hostname <Hostname_of_machine>
+    user <username_of_machine>
+    IdentityFile <Path_of_private_key>
+    StrictHostKeyChecking no
+    ProxyCommand ssh -W %h:%p bastion_host
+
