@@ -7,7 +7,7 @@
      apt:
       update_cache: yes
       cache_valid_time: 3600
-   - name: ensure nginx is installed
+   - name: Ensure nginx is installed
      become: yes
      apt:
       name: nginx
@@ -17,7 +17,7 @@
      apt:
       name: php7.4-fpm
       state: present
-   - name: start nginx
+   - name: Start nginx
      become: yes
      service:
          name: nginx
@@ -30,7 +30,7 @@
    - name: Add the template file
      become: yes
      template:
-       src: templates/nginx.conf.j2
+       src: templates/nginx.conf
        dest: /etc/nginx/sites-available/default
    - name: Enable the configuration file from nginx available sites
      become: yes
